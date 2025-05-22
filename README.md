@@ -1,3 +1,3 @@
 # bookbot
 
-BookBot is my first [Boot.dev](https://www.boot.dev) project!
+BookBot reads any text file specified as a CLI argument and returns a count of each alphabetical character.
