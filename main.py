@@ -1,5 +1,6 @@
 # Imports
 from stats import *
+from sys import *
 
 #Functions defs
 def get_book_text(book_path):
@@ -9,16 +10,22 @@ def get_book_text(book_path):
 #Defining main
 def main():
     try:
-        #book_text = get_book_text(input("Please enter the books file path:"))
-        book_text = get_book_text("books/frankenstein.txt")
-        #print(book_text)
+        file_path = argv[1]
+        book_text = get_book_text(file_path)
         num_words = word_count(book_text)
-        print(f"{num_words} words found in the document")
-        print (get_char_count(book_text))
+        o_char_count = order_char_count(get_char_count(book_text))
+        print(f"============ BOOKBOT ============ \n Analyzing book found at books/frankenstein.txt... \n ----------- Word Count ---------- \n Found {num_words} total words \n --------- Character Count -------" )
+        for item in o_char_count:
+            if item["char"].isalpha():
+                print(str(item["char"]) + ": " + str(item["num"]))
+        print("============= END ===============")
 
-
+    
+    except IndexError:
+        print("Usage: python3 main.py <path_to_book>")
+        exit(1)
     except Exception as e:
         print(e)
-
+        
 #Running
 main()
